@@ -1,5 +1,7 @@
+import { TokenService } from './../../Services/token.service';
 import { AuthService } from './../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.css'],
 })
 export class SignupComponent implements OnInit {
-  constructor(private auth: AuthService) {}
+  constructor(
+    private auth: AuthService,
+    private router: Router,
+    private Token: TokenService
+    ) 
+    {}
+    
   public form = {
     email: null,
     password: null,
@@ -21,11 +29,18 @@ export class SignupComponent implements OnInit {
 
   onSubmit() {
     return this.auth.signup(this.form).subscribe(
-      (data) => console.log(data),
+      (data) => this.handleResponse(data),
       (error) => console.log(this.handleError(error))
     );
-    
   }
+
+  handleResponse(data){
+    this.Token.handle(data.access_token);
+    this.router.navigateByUrl('/profile');
+
+  }
+
+
   handleError(error) {
     this.error = error.error.errors;
     return this.error;

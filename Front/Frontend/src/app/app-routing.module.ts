@@ -1,3 +1,5 @@
+import { BeforeLoginService } from './Services/before-login.service';
+import { AfterLoginService } from './Services/after-login.service';
 import { ProfileComponent } from './components/profile/profile.component';
 import { ResponseResendComponent } from './components/password/response-resend/response-resend.component';
 import { RequestResendComponent } from './components/password/request-resend/request-resend.component';
@@ -10,26 +12,33 @@ import { Routes, RouterModule } from '@angular/router';
 const routes: Routes = [
   {
     path:'login',
-    component:LoginComponent
+    component:LoginComponent,
+    canActivate:[BeforeLoginService]
   },
 
   {
     path:'signup',
-    component:SignupComponent
+    component:SignupComponent,
+    canActivate:[BeforeLoginService]
   },
 
   {
     path:'request-password',
-    component:RequestResendComponent
+    component:RequestResendComponent,
+    canActivate:[BeforeLoginService]
+
   },
 
   {
     path:'response-password',
-    component:ResponseResendComponent
+    component:ResponseResendComponent,
+    canActivate:[BeforeLoginService]
+
   },
   {
     path:'profile',
-    component:ProfileComponent
+    component:ProfileComponent,
+    canActivate:[AfterLoginService]
   },
 ];
 

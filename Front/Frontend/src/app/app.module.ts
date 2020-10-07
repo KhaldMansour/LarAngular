@@ -12,6 +12,8 @@ import { ResponseResendComponent } from './components/password/response-resend/r
 import { ProfileComponent } from './components/profile/profile.component';
 import { HttpClientModule } from '@angular/common/http' 
 import { AuthService } from './Services/auth.service';
+import { SnotifyModule, SnotifyService, ToastDefaults } from 'ng-snotify';
+
 
 
 @NgModule({
@@ -23,14 +25,17 @@ import { AuthService } from './Services/auth.service';
     RequestResendComponent,
     ResponseResendComponent,
     ProfileComponent,
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    SnotifyModule,
   ],
-  providers: [AuthService , TokenService],
+  providers: [AuthService , TokenService ,{ provide: 'SnotifyToastConfig', useValue: ToastDefaults},
+  SnotifyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

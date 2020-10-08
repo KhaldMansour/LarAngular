@@ -19,7 +19,6 @@ class ResetPasswordMail extends Mailable
     public function __construct($token)
     {
         $this->token = $token;
-        var_dump($token);
     }
     public $token;
 

@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\Http\Requests\SignUpRequest;
+use Auth;
+use Tymon\JWTAuth\Facades\JWTAuth;
+
 
 class AuthController extends Controller
 {
@@ -18,7 +21,9 @@ class AuthController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth:api', ['except' => ['login', 'signup']]);
+
+        $this->middleware('auth:api', ['except' => ['login', 'signup' , 'me']]);
+      
     }
 
     /**
@@ -35,6 +40,7 @@ class AuthController extends Controller
         }
 
         return $this->respondWithToken($token);
+        
     }
 
     public function signup(SignUpRequest $request)
@@ -50,9 +56,13 @@ class AuthController extends Controller
      *
      * @return \Illuminate\Http\JsonResponse
      */
-    public function me()
+    public function me(Request $request)
     {
-        return response()->json(auth()->user());
+        $token = JWTAuth::getToken();
+        $user = JWTAuth::toUser($token);
+        return $user;
+
+
     }
 
     /**

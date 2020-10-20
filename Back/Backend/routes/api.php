@@ -6,9 +6,7 @@ use App\Mail\ResetPasswordMail;
 
 
 Route::group([
-
-    'middleware' => 'api',
-
+    //User Routes
 ], function ($router) {
 
     Route::post('login', 'AuthController@login');

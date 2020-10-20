@@ -10,11 +10,12 @@ import { SignupComponent } from './components/signup/signup.component';
 import { RequestResendComponent } from './components/password/request-resend/request-resend.component';
 import { ResponseResendComponent } from './components/password/response-resend/response-resend.component';
 import { ProfileComponent } from './components/profile/profile.component';
-import { HttpClientModule } from '@angular/common/http' 
+import { HttpClientModule , HTTP_INTERCEPTORS} from '@angular/common/http' 
 import { AuthService } from './Services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './components/home/home.component';
+import { TokenInterceptorService } from './Services/token-interceptor.service';
 
 
 
@@ -40,7 +41,11 @@ import { HomeComponent } from './components/home/home.component';
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
   ],
-  providers: [AuthService , TokenService ],
+  providers: [AuthService , TokenService , { 
+    provide: HTTP_INTERCEPTORS ,
+    useClass: TokenInterceptorService,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

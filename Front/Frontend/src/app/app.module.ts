@@ -14,6 +14,7 @@ import { HttpClientModule } from '@angular/common/http'
 import { AuthService } from './Services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -28,6 +29,7 @@ import { ToastrModule } from 'ngx-toastr';
     RequestResendComponent,
     ResponseResendComponent,
     ProfileComponent,
+    HomeComponent,
     
   ],
   imports: [

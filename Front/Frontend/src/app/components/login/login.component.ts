@@ -38,7 +38,7 @@ export class LoginComponent implements OnInit {
     this.notify.success('Done' , 'Congts');
     this.Token.handle(data.access_token);
     this.Auth.changeAuthStatus(true)
-    this.router.navigateByUrl('/profile');
+    this.router.navigateByUrl('/');
   }
   handleError(error) {
     this.notify.error('everything is broken', 'Major Error', {

@@ -1,3 +1,5 @@
+import { AdminLoginComponent } from './components/Admin/admin-login/admin-login.component';
+import { AdminSignupComponent } from './components/Admin/admin-signup/admin-signup.component';
 import { HomeComponent } from './components/home/home.component';
 import { BeforeLoginService } from './Services/before-login.service';
 import { AfterLoginService } from './Services/after-login.service';
@@ -44,6 +46,15 @@ const routes: Routes = [
     path:'profile',
     component:ProfileComponent,
     canActivate:[AfterLoginService]
+  },
+  // Admin Routes
+  {
+    path:'admin/signup',
+    component:AdminSignupComponent,
+  },
+  {
+    path:'admin/login',
+    component:AdminLoginComponent,
   },
 ];
 

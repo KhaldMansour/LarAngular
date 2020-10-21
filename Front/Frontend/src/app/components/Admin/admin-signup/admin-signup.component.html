@@ -1,0 +1,58 @@
+<div class="mt-3 col-9 offset-2">
+    <div class="card">
+        <div class="card-header">
+            Admin Sign Up
+        </div>
+        <div class="card-body" >
+            <form #AdminSignupForm=ngForm (ngSubmit)="onSubmit()">
+                <div class="alert alert-danger" *ngIf ="error">
+                    {{error.email}}
+                    {{error.password}}
+                    {{error.name}}
+                </div>
+                <div class="form-group row">
+                  <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+                  <div class="col-sm-10">
+                    <input type="email" class="form-control" id="inputEmail3" placeholder="Email" name="email" required [(ngModel)] ="form.email"> 
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="inputNmae3" class="col-sm-2 col-form-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" class="form-control" id="inputName3" placeholder="Name" name="name" required [(ngModel)] ="form.name">
+                    </div>
+                  </div>
+                  
+                  <div class="form-group row">
+                    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+                    <div class="col-sm-10">
+                      
+                      <input type="password" class="form-control" id="inputPassword3" placeholder="Password" name="password" [(ngModel)] ="form.password" required>
+                    
+
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                    <label for="passwordConfirmation" class="col-sm-2 col-form-label">Confirm Password</label>
+                    <div class="col-sm-10">
+  
+                      <input type="password" class="form-control" id="passwordConfirmation" placeholder="Confirm Password" name="password_confirmation" [(ngModel)] ="form.password_confirmation" required />
+                      
+  
+                    </div>
+                  </div>
+          
+                <div class="form-group row">
+                  <div class="col-sm-10 offset-2">
+                    
+                    <button type="submit" class="btn btn-info"  >Sign Up</button>
+                    <a type="submit" class="btn btn-primary float-right" routerLink="/login">Sign in</a>
+
+                  </div>
+                </div>
+              </form>
+        </div>
+    </div>
+</div>

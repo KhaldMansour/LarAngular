@@ -19,3 +19,18 @@ Route::group([
 
 
 });
+
+Route::group([
+    //Admin Routes
+], function ($router) {
+
+    Route::post('admin/login', 'AdminController@login');
+    Route::post('admin/signup', 'AdminController@signup');
+    Route::post('logout', 'AdminController@logout');
+    Route::post('refresh', 'AdminController@refresh');
+    Route::post('me', 'AdminController@me');
+    Route::post('sendPasswordResetLink' , 'PasswordController@sendEmail' );
+    Route::post('resetPassword' , 'PasswordController@resetPassword' );
+
+
+});

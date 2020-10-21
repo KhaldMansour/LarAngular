@@ -22,7 +22,6 @@ export class SignupComponent implements OnInit {
     password_confirmation: null,
     name: null
   };
-  public test;
   public error = null;
 
   ngOnInit(): void {}

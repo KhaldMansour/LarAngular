@@ -16,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptorService } from './Services/token-interceptor.service';
+import { AdminLoginComponent } from './components/Admin/admin-login/admin-login.component';
+import { AdminSignupComponent } from './components/Admin/admin-signup/admin-signup.component';
 
 
 
@@ -31,6 +33,8 @@ import { TokenInterceptorService } from './Services/token-interceptor.service';
     ResponseResendComponent,
     ProfileComponent,
     HomeComponent,
+    AdminLoginComponent,
+    AdminSignupComponent,
     
   ],
   imports: [

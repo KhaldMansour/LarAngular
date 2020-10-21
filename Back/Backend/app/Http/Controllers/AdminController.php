@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\User;
-use App\Http\Requests\SignUpRequest;
+use App\Admin;
+use App\Http\Requests\AdminSignUpRequest;
 use Auth;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 
-class AuthController extends Controller
+class AdminController extends Controller
 {
-    //
-
+    
     /**
      * Create a new AuthController instance.
      *
@@ -22,7 +20,7 @@ class AuthController extends Controller
     public function __construct()
     {
 
-        $this->middleware('auth:api', ['except' => ['login', 'signup' ]]);
+        $this->middleware('auth:admin', ['except' => ['login', 'signup' ]]);
       
     }
 
@@ -35,7 +33,7 @@ class AuthController extends Controller
     {
         $credentials = request(['email', 'password']);
 
-        if (! $token = auth()->claims(['isAdmin'=> 'false'])->attempt($credentials)) {
+        if (! $token = Auth::guard('admin')->attempt($credentials)) {
             return response()->json(['error' => "Email or Pssword doesn't exist"], 401);
         }
 
@@ -43,39 +41,39 @@ class AuthController extends Controller
         
     }
 
-    public function signup(SignUpRequest $request)
+    public function signup(AdminSignUpRequest $request)
     {
-        $user= User::create($request->all());
-        return $this->login($user);
+        $admin= Admin::create($request->all());
+        return $this->login($admin);
 
     }
 
 
     /**
-     * Get the authenticated User.
+     * Get the authenticated Admin.
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function me(Request $request)
     {
         // $user = JWTAuth::toUser(JWTAuth::getToken());
-        $userData =
+        $adminData =
         [
-            'user' =>  auth()->user() ,
-            'payload' => auth()->payload()
+            'admin' =>  Auth::guard('admin')->user() ,
+            'payload' => Auth::guard('admin')->payload()
         ];
-        return $userData ;
+        return $adminData ;
 
     }
 
     /**
-     * Log the user out (Invalidate the token).
+     * Log the Admin out (Invalidate the token).
      *
      * @return \Illuminate\Http\JsonResponse
      */
     public function logout()
     {
-        auth()->logout();
+        Auth::guard('admin')->logout();
 
         return response()->json(['message' => 'Successfully logged out']);
     }
@@ -87,7 +85,7 @@ class AuthController extends Controller
      */
     public function refresh()
     {
-        return $this->respondWithToken(auth()->refresh());
+        return $this->respondWithToken(Auth::guard('admin')->refresh());
     }
 
     /**
@@ -103,7 +101,7 @@ class AuthController extends Controller
             'access_token' => $token,
             'token_type' => 'bearer',
             'expires_in' => auth()->factory()->getTTL() * 60,
-            'user' => auth()->user()->name
+            'admin' => Auth::guard('admin')->user()->name
         ]);
     }
 }

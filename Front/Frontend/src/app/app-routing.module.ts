@@ -10,6 +10,7 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdminBeforeLoginService } from './Services/Admin/admin-before-login.service';
 
 
 const routes: Routes = [
@@ -51,10 +52,12 @@ const routes: Routes = [
   {
     path:'admin/signup',
     component:AdminSignupComponent,
+    canActivate:[AdminBeforeLoginService]
   },
   {
     path:'admin/login',
     component:AdminLoginComponent,
+    canActivate:[AdminBeforeLoginService]
   },
 ];
 

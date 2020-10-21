@@ -1,5 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { AdminTokenService } from './../../../Services/Admin/admin-token.service';
 import { Component, OnInit } from '@angular/core';
+import { AdminAuthService } from 'src/app/Services/Admin/admin-auth.service';
 
 @Component({
   selector: 'app-admin-signup',
@@ -8,7 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminSignupComponent implements OnInit {
 
-  constructor(private http : HttpClient) { }
+  constructor(
+    private auth : AdminAuthService,
+    private token : AdminTokenService,
+    private router : Router
+    ) { }
 
   public form = {
     email: null,
@@ -21,15 +27,15 @@ export class AdminSignupComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
-    return this.http.post('http://localhost:8000/api/admin/signup' ,this.form).subscribe(
+    return this.auth.signup(this.form).subscribe(
       (data) => this.handleResponse(data),
       (error) => console.log(this.handleError(error))
     );
   }
 
   handleResponse(data){
-    // this.Token.handle(data.access_token);
-    // this.router.navigateByUrl('/');
+    this.token.handle(data.access_token);
+    this.router.navigateByUrl('/');
     console.log(data);
     
 

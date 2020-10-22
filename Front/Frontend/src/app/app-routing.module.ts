@@ -1,3 +1,4 @@
+import { AdminRequestResendComponent } from './components/password/Admin/admin-request-resend/admin-request-resend.component';
 import { AdminLoginComponent } from './components/Admin/admin-login/admin-login.component';
 import { AdminSignupComponent } from './components/Admin/admin-signup/admin-signup.component';
 import { HomeComponent } from './components/home/home.component';
@@ -11,6 +12,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminBeforeLoginService } from './Services/Admin/admin-before-login.service';
+import { AdminResponseResendComponent } from './components/password/Admin/admin-response-resend/admin-response-resend.component';
 
 
 const routes: Routes = [
@@ -57,6 +59,16 @@ const routes: Routes = [
   {
     path:'admin/login',
     component:AdminLoginComponent,
+    canActivate:[AdminBeforeLoginService]
+  },
+  {
+    path:'admin/request-password',
+    component:AdminRequestResendComponent,
+    canActivate:[AdminBeforeLoginService]
+  },
+  {
+    path:'admin/response-password',
+    component:AdminResponseResendComponent,
     canActivate:[AdminBeforeLoginService]
   },
 ];

@@ -18,6 +18,8 @@ import { HomeComponent } from './components/home/home.component';
 import { TokenInterceptorService } from './Services/token-interceptor.service';
 import { AdminLoginComponent } from './components/Admin/admin-login/admin-login.component';
 import { AdminSignupComponent } from './components/Admin/admin-signup/admin-signup.component';
+import { AdminRequestResendComponent } from './components/password/Admin/admin-request-resend/admin-request-resend.component';
+import { AdminResponseResendComponent } from './components/password/Admin/admin-response-resend/admin-response-resend.component';
 
 
 
@@ -35,6 +37,8 @@ import { AdminSignupComponent } from './components/Admin/admin-signup/admin-sign
     HomeComponent,
     AdminLoginComponent,
     AdminSignupComponent,
+    AdminRequestResendComponent,
+    AdminResponseResendComponent,
     
   ],
   imports: [

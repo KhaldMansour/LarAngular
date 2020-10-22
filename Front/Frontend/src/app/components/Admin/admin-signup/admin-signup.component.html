@@ -4,7 +4,7 @@
             Admin Sign Up
         </div>
         <div class="card-body" >
-            <form #AdminSignupForm=ngForm (ngSubmit)="onSubmit()">
+            <form #adminSignupForm=ngForm (ngSubmit)="onSubmit()">
                 <div class="alert alert-danger" *ngIf ="error">
                     {{error.email}}
                     {{error.password}}
@@ -47,7 +47,7 @@
                 <div class="form-group row">
                   <div class="col-sm-10 offset-2">
                     
-                    <button type="submit" class="btn btn-info"  >Sign Up</button>
+                    <button type="submit" class="btn btn-info"[disabled]="!adminSignupForm.valid">Sign Up</button>
                     <a type="submit" class="btn btn-primary float-right" routerLink="/login">Sign in</a>
 
                   </div>

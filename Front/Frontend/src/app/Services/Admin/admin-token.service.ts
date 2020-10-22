@@ -7,8 +7,8 @@ export class AdminTokenService {
 
   constructor() { }
   private iss ={
-    login: 'http://localhost:8000/api/login/admin',
-    signup: 'http://localhost:8000/api/signup/admin'
+    login: 'http://localhost:8000/api/admin/login',
+    signup: 'http://localhost:8000/api/admin/signup'
   }
 
   handle(token) {

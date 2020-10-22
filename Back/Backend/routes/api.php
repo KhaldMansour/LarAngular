@@ -26,11 +26,11 @@ Route::group([
 
     Route::post('admin/login', 'AdminController@login');
     Route::post('admin/signup', 'AdminController@signup');
-    Route::post('logout', 'AdminController@logout');
-    Route::post('refresh', 'AdminController@refresh');
-    Route::post('me', 'AdminController@me');
-    Route::post('sendPasswordResetLink' , 'PasswordController@sendEmail' );
-    Route::post('resetPassword' , 'PasswordController@resetPassword' );
+    Route::post('admin/logout', 'AdminController@logout');
+    Route::post('admin/refresh', 'AdminController@refresh');
+    Route::post('admin/me', 'AdminController@me');
+    Route::post('admin/sendPasswordResetLink' , 'AdminPasswordController@sendEmail' );
+    Route::post('admin/resetPassword' , 'AdminPasswordController@resetPassword' );
 
 
 });

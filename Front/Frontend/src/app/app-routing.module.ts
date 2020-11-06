@@ -1,3 +1,4 @@
+import { AdminAfterLoginService } from './Services/Admin/admin-after-login.service';
 import { AdminRequestResendComponent } from './components/password/Admin/admin-request-resend/admin-request-resend.component';
 import { AdminLoginComponent } from './components/Admin/admin-login/admin-login.component';
 import { AdminSignupComponent } from './components/Admin/admin-signup/admin-signup.component';
@@ -23,53 +24,53 @@ const routes: Routes = [
   {
     path:'login',
     component:LoginComponent,
-    canActivate:[BeforeLoginService]
+    canActivate:[BeforeLoginService , AdminBeforeLoginService ]
   },
 
   {
     path:'signup',
     component:SignupComponent,
-    canActivate:[BeforeLoginService]
+    canActivate:[BeforeLoginService, AdminBeforeLoginService]
   },
 
   {
     path:'request-password',
     component:RequestResendComponent,
-    canActivate:[BeforeLoginService]
+    canActivate:[BeforeLoginService, AdminBeforeLoginService]
 
   },
 
   {
     path:'response-password',
     component:ResponseResendComponent,
-    canActivate:[BeforeLoginService]
+    canActivate:[BeforeLoginService, AdminBeforeLoginService]
 
   },
   {
     path:'profile',
     component:ProfileComponent,
-    canActivate:[AfterLoginService]
+    canActivate:[AfterLoginService , AdminAfterLoginService]
   },
   // Admin Routes
   {
     path:'admin/signup',
     component:AdminSignupComponent,
-    canActivate:[AdminBeforeLoginService]
+    canActivate:[AdminBeforeLoginService, AdminBeforeLoginService]
   },
   {
     path:'admin/login',
     component:AdminLoginComponent,
-    canActivate:[AdminBeforeLoginService]
+    canActivate:[AdminBeforeLoginService, AdminBeforeLoginService]
   },
   {
     path:'admin/request-password',
     component:AdminRequestResendComponent,
-    canActivate:[AdminBeforeLoginService]
+    canActivate:[AdminBeforeLoginService, AdminBeforeLoginService]
   },
   {
     path:'admin/response-password',
     component:AdminResponseResendComponent,
-    canActivate:[AdminBeforeLoginService]
+    canActivate:[AdminBeforeLoginService, AdminBeforeLoginService]
   },
 ];
 
